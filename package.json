@@ -13,11 +13,6 @@
         "build:test": "cross-env webpack --display verbose --progress --display-modules --config build/webpack.dev.js",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
     },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
     "homepage": "./",
     "keywords": [],
     "author": "",
