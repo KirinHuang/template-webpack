@@ -14,7 +14,7 @@ module.exports = merge(common, {
         chunkFilename: config.OUTPUT_DIR + 'js/[name].[contenthash:5].js',
         publicPath: '',
     },
-    // devtool: 'eval',
+    devtool: 'source-map', // 源代码 品质
     plugins: [
         new CleanWebpackPlugin([
             resolve(config.PROJECT_ROOT, './dist'),
