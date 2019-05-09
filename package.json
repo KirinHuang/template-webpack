@@ -52,6 +52,10 @@
         "workbox-webpack-plugin": "^3.6.3"
     },
     "dependencies": {
-        "core-js": "^2.6.5"
+        "@types/react": "^16.8.13",
+        "@types/react-dom": "^16.8.4",
+        "core-js": "^2.6.5",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
     }
 }

@@ -18,7 +18,7 @@ let cssLoader = [
 const webpackConfig = {
     context: config.PROJECT_ROOT,
     entry: {
-        app: ['./src/main.ts'],
+        app: ['./src/main.tsx'],
     },
     output: {
         path: config.PROJECT_ROOT,
