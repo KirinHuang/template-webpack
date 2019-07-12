@@ -3,7 +3,7 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const webpackDevMiddleware = require('webpack-dev-middleware')
-const webpackHotMiddleware = require("webpack-hot-middleware")
+const webpackHotMiddleware = require('webpack-hot-middleware')
 
 let config = require('./webpack.dev')
 // add HotModuleReplacementPlugin into the entry array
