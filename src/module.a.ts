@@ -1,4 +1,3 @@
-export const printLog = function () {
-    console.log('hello')
-}
-
+export const printLog = () => {
+    console.log('hello');
+};
