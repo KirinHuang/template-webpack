@@ -1,10 +1,7 @@
-import { printLog } from './module.a';
+import App from './app';
 
-printLog();
+App();
 
 if (module.hot) {
-    module.hot.accept('./module.a', () => {
-        console.log('main.js is updated');
-        printLog();
-    });
+    module.hot.accept();
 }

@@ -1,3 +1,3 @@
 export const printLog = () => {
-    console.log('hello');
+    console.log('hello world!');
 };
