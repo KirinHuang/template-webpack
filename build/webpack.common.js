@@ -11,20 +11,20 @@ let cssLoader = [
         query: {
             importLoaders: 1
         }
-    },
+    }
 ]
 
 const webpackConfig = {
     context: config.PROJECT_ROOT,
     entry: {
-        app: ['./src/main.ts'],
+        app: ['./src/main.ts']
     },
     output: {
-        path: config.PROJECT_ROOT,
+        path: config.PROJECT_ROOT
     },
     optimization: {
         runtimeChunk: {
-            name: 'manifest',
+            name: 'manifest'
         },
         splitChunks: {
             cacheGroups: {
@@ -32,28 +32,30 @@ const webpackConfig = {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
                     chunks: 'all'
-                },
+                }
             }
         }
     },
-    externals: {
-    },
+    externals: {},
     plugins: [
         new webpack.optimize.ModuleConcatenationPlugin(),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
             filename: devMode ? 'css/[name].dev.css' : 'css/[name].[contenthash:5].css',
-            chunkFilename: devMode ? 'css/[id].dev.css' : 'css/[id].[contenthash:5].css',
+            chunkFilename: devMode ? 'css/[id].dev.css' : 'css/[id].[contenthash:5].css'
         }),
         new HtmlWebpackPlugin({
-            template: './src/index.tpl',
+            title: '首页',
+            template: './src/index.ejs',
             filename: 'index.html'
         }),
-        new HtmlWebpackPlugin({ // for http-server spa
-            template: './src/index.tpl',
+        new HtmlWebpackPlugin({
+            title: '首页-SPA',
+            // for http-server spa
+            template: './src/index.ejs',
             filename: '404.html'
-        }),
+        })
     ],
     module: {
         rules: [
@@ -64,21 +66,19 @@ const webpackConfig = {
                         loader: 'ts-loader',
                         options: {
                             transpileOnly: true,
-                            experimentalWatchApi: true,
-                        },
-                    },
+                            experimentalWatchApi: true
+                        }
+                    }
                 ],
                 exclude: /node_modules/
             },
             {
                 test: /\.js$/,
-                use: [
-                    'babel-loader'
-                ]
+                use: ['babel-loader']
             },
             {
                 test: /\.css$/,
-                use: cssLoader,
+                use: cssLoader
             },
             {
                 test: /\.(png|gif|svg|jpg)$/,
