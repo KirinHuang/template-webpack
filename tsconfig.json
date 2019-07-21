@@ -6,7 +6,8 @@
         "target": "es5",
         "jsx": "react",
         "allowJs": true,
-        "moduleResolution":"node"
+        "moduleResolution":"node",
+        "isolatedModules":true           // 有4种特性babel不支持，开启提示
     },
 
     "exclude": ["node_modules", "build", "dist", "./*.js"]

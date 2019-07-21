@@ -15,6 +15,16 @@ module.exports = merge(common, {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
     ],
+    module: {
+        rules: [
+            {
+                test: /\.(ts|js)$/,
+                loader: 'eslint-loader',
+                exclude: /node_modules/,
+                enforce: 'pre'
+            }
+        ]
+    },
     devServer: {
         historyApiFallback: true,
         contentBase: config.PROJECT_ROOT,

@@ -59,21 +59,21 @@ const webpackConfig = {
     ],
     module: {
         rules: [
+            // {
+            //     test: /\.tsx?$/,
+            //     use: [
+            //         {
+            //             loader: 'ts-loader',
+            //             options: {
+            //                 transpileOnly: true,
+            //                 experimentalWatchApi: true
+            //             }
+            //         }
+            //     ],
+            //     exclude: /node_modules/
+            // },
             {
-                test: /\.tsx?$/,
-                use: [
-                    {
-                        loader: 'ts-loader',
-                        options: {
-                            transpileOnly: true,
-                            experimentalWatchApi: true
-                        }
-                    }
-                ],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.js$/,
+                test: /\.(ts|js)$/,
                 use: ['babel-loader']
             },
             {
