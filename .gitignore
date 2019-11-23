@@ -4,3 +4,6 @@
 #temp file
 /dist
 /*.html
+
+# history
+.history/

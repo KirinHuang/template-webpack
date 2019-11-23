@@ -17,7 +17,7 @@ let cssLoader = [
 const webpackConfig = {
     context: config.PROJECT_ROOT,
     entry: {
-        app: ['./src/main.ts']
+        app: ['./src/main.js']
     },
     output: {
         path: config.PROJECT_ROOT
@@ -60,19 +60,6 @@ const webpackConfig = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: [
-                    {
-                        loader: 'ts-loader',
-                        options: {
-                            transpileOnly: true,
-                            experimentalWatchApi: true
-                        }
-                    }
-                ],
-                exclude: /node_modules/
-            },
-            {
                 test: /\.js$/,
                 use: ['babel-loader']
             },
@@ -107,7 +94,7 @@ const webpackConfig = {
         ]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.jsx', '.js'],
         alias: {
             '@': '../src/'
         }
