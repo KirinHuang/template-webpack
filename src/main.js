@@ -1,7 +1,7 @@
-import App from './app';
+import App from './app'
 
-App();
+App()
 
 if (module.hot) {
-    module.hot.accept();
+    module.hot.accept()
 }
