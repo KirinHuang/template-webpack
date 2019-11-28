@@ -3,7 +3,8 @@ module.exports = {
         ["@babel/preset-env", {
             useBuiltIns: 'usage',
             corejs: '2.6.5',
-        }]
+        }],
+        "@babel/preset-flow"
     ],
     plugins: [
         '@babel/plugin-syntax-dynamic-import',
