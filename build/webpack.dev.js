@@ -19,5 +19,6 @@ module.exports = merge(common, {
         historyApiFallback: true,
         contentBase: config.PROJECT_ROOT,
         hot: true,
+        host: '0.0.0.0',
     },
 })
