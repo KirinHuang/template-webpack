@@ -1,71 +1,81 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
 const config = require('./config')
 const devMode = process.env.NODE_ENV !== 'production'
 
 let cssLoader = [
-    MiniCssExtractPlugin.loader,
+    devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
     {
         loader: 'css-loader',
         query: {
-            importLoaders: 1
-        }
-    }
+            importLoaders: 1,
+        },
+    },
 ]
 
 const webpackConfig = {
     context: config.PROJECT_ROOT,
     entry: {
-        app: ['./src/main.js']
+        app: ['./src/main.js'],
     },
     output: {
-        path: config.PROJECT_ROOT
+        path: config.PROJECT_ROOT,
     },
     optimization: {
         runtimeChunk: {
-            name: 'manifest'
+            name: 'manifest',
         },
         splitChunks: {
             cacheGroups: {
                 vendor: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
-                    chunks: 'all'
-                }
-            }
-        }
+                    chunks: 'all',
+                },
+            },
+        },
     },
     externals: {},
     plugins: [
+        new VueLoaderPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: devMode ? 'css/[name].dev.css' : 'css/[name].[contenthash:5].css',
-            chunkFilename: devMode ? 'css/[id].dev.css' : 'css/[id].[contenthash:5].css'
+            filename: devMode
+                ? 'css/[name].dev.css'
+                : 'css/[name].[contenthash:5].css',
+            chunkFilename: devMode
+                ? config.OUTPUT_DIR + './css/[id].dev.css'
+                : config.OUTPUT_DIR + './css/[id].[contenthash:5].css',
         }),
         new HtmlWebpackPlugin({
             title: '首页',
             template: './src/index.ejs',
-            filename: 'index.html'
+            filename: 'index.html',
         }),
         new HtmlWebpackPlugin({
             title: '首页-SPA',
             // for http-server spa
             template: './src/index.ejs',
-            filename: '404.html'
-        })
+            filename: '404.html',
+        }),
     ],
     module: {
         rules: [
             {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+            },
+            {
                 test: /\.js$/,
-                use: ['babel-loader']
+                use: ['babel-loader'],
             },
             {
                 test: /\.css$/,
-                use: cssLoader
+                use: cssLoader,
             },
             {
                 test: /\.(png|gif|svg|jpg)$/,
@@ -74,10 +84,10 @@ const webpackConfig = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[hash:5].[ext]',
-                            outputPath: 'img/'
-                        }
-                    }
-                ]
+                            outputPath: 'img/',
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(woff|woff2)$/,
@@ -86,19 +96,20 @@ const webpackConfig = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[hash:5].[ext]',
-                            outputPath: 'fonts/'
-                        }
-                    }
-                ]
-            }
-        ]
+                            outputPath: 'fonts/',
+                        },
+                    },
+                ],
+            },
+        ],
     },
     resolve: {
         extensions: ['.jsx', '.js'],
         alias: {
-            '@': '../src/'
-        }
-    }
+            '@': '../src/',
+            vue$: 'vue/dist/vue.esm.js',
+        },
+    },
 }
 
 module.exports = webpackConfig
